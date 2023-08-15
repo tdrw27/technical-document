@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Racket Quick Start</title>
+</head>
+<body>
+    <a id="main-logo" href="https://racket-lang.org/"><img  src="https://racket-lang.org/logo-and-text-1-2.png" alt="racket logo"></a>
+    <nav id="navbar">
+        <header>
+            Racket: Quick Start Guide
+        </header>
+        <ul>
+            <li><a href="#Start_Here" class="nav-link">Start Here</a></li>
+            <li><a href="#Loading_Libraries" class="nav-link">Loading Libraries</a></li>
+            <li><a href="#Evaluating_Expressions" class="nav-link">Evaluating Expressions</a></li>
+            <li><a href="#Definitions" class="nav-link">Definitions</a></li>
+            <li><a href="#Local_Bindings" class="nav-link">Local Bindings</a></li>
+            <li><a href="#Functions_are_Values" class="nav-link">Functions are Values</a></li>
+            <li><a href="#Lexical_Scope" class="nav-link">Lexical Scope</a></li>
+            <li><a href="#Lists" class="nav-link">Lists</a></li>
+            <li><a href="#Modules" class="nav-link">Modules</a></li>
+            <li><a href="#Macros" class="nav-link">Macros</a></li>
+            <li><a href="#Objects" class="nav-link">Objects</a></li>
+            <li><a href="#Where_Now" class="nav-link">Where Now</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <section class="main-section" id="Start_Here">
+            <header>
+                Start Here
+            </header>
+            <ul>
+                <li>Download <a href="https://download.racket-lang.org/" target="_blank" class="code-keyword">Racket</a></li>
+                <li>Install</li>
+                <li>Start DrRacket</li>
+            </ul>
+        </section>
+        <section class="main-section" id="Loading_Libraries">
+            <header>
+                Loading Libraries
+            </header>
+            <p><span class="important">See <a href="https://docs.racket-lang.org/drracket/interface-essentials.html" target="_blank" class="code-keyword">the DrRacket documentation</a> for a brief overview of the DrRacket IDE.</span></p>
+            <p>
+                To draw pictures, we must first load some picture functions, which are part of a library for creating slide presentations. Copy the following into the definitions area, which is the top text area that you see in DrRacket:
+            </p>
+            <pre>
+                <code>
+                    <a class="code-keyword" href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29" target="_blank">#lang</a> <a class="code-keyword" href="https://docs.racket-lang.org/slideshow/index.html" target="_blank">slideshow</a>
+                </code>
+            </pre>
+            <p>
+                Then click the Run button. You'll see the text caret move to the bottom text area, which is the <i>interactions area</i>.
+            </p>
+            <p>
+                If you've used DrRacket before, you might need to reset DrRacket to use the language declared in the source via the <span class="bold">Language|Choose Language...</span> menu item before clicking Run.
+            </p>
+        </section>
+        <section class="main-section" id="Evaluating_Expressions">
+            <header>
+                Evaluating Expressions
+            </header>
+            <p>
+                When you type an expression after the <code>></code> in the interactions window and hit Enter, DrRacket evaluates the expression and prints its result. An expression can be just a value, such as the number <span class="code-value">5</span> or the string<span class="code-value"> "art gallery"</span>:
+            </p>
+            <pre>
+                <code>
+                    > <span class="code-value">5</span>
+                    <span class="code-output">5</span>
+                    ><span class="code-value"> "art gallery"</span>
+                    <span class="code-output">"art gallery"</span>
+                </code>
+            </pre>
+            <p>
+                An expression can also be a function call. To call a function, put an open parenthesis before the function name, then expressions for the function arguments, and then a close parenthesis, like this:
+            </p>
+            <pre>
+                <code>
+                    > (<span class="code-keyword"><span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span></span> <span class="code-value">10</span>)
+                    <img src="https://docs.racket-lang.org/quick/pict.png" alt="small circle">
+                </code>
+            </pre>
+            <p>
+                A result from the <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> function is a picture value, which prints as an expression result in much the same way that numbers or strings print. The argument to <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> determines the <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>'s size in pixels. As you might guess, there's a <a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a> function that takes two arguments instead of one:
+            </p>
+            <pre>
+                <code>
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a> <span class="code-value">10</span> <span class="code-value">20</span>)
+                    <img src="https://docs.racket-lang.org/quick/pict_2.png" alt="small rectangle">
+                </code>
+            </pre>
+            <p>
+                Try giving <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> the wrong number of arguments, just to see what happens:
+            </p>
+            <pre>
+                <code>
+                    > (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span> <span class="code-value">20</span>)
+                </code>
+                <span class="code-error">
+                   circle: arity mismatch;
+                    the expected number of arguments does not match the given
+                   number
+                     expected: 1 plus optional arguments with keywords
+                   #:border-color and #:border-width
+                     given: 2
+                     arguments...:
+                       10
+                       20
+                </span>
+            </pre>
+            <p>
+                Note that DrRacket highlights in pink the expression that triggered the error (but pink highlighting is not shown in this documentation).
+            </p>
+            <p>
+                In addition to basic picture constructors like <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> and <a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a>, there's a <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> function that combines pictures. When you start composing function calls in Racket, it looks like this:
+            </p>
+            <pre>
+                <code>
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>) (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">rectangle</a> <span class="code-value">10</span> <span class="code-value">20</span>))
+                    <img src="https://docs.racket-lang.org/quick/pict_3.png" alt="appended circle and rectangle">
+                </code>
+            </pre>
+            <p>
+                The hyphen in the name <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> is just a part of the identifier; it's not hc minus append. The function name starts with h because it combines pictures horizontally, and the next letter is c because the pictures are centered vertically.
+            </p>
+            <p>
+                If you wonder what other functions exist—perhaps a way to stack pictures vertically and left-aligned?—move the text caret to the name <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> and press the F1 key in DrRacket. A browser window will open, and it will give you a link to the documentation for hc-append. Click the link, and you'll see lots of other functions.
+            </p>
+            <p>
+                If you're reading this in HTML form, you can also just click on <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> or any other imported identifier that is used in this tutorial.
+            </p>
+        </section>
+        <section class="main-section" id="Definitions">
+            <header>
+                Definitions
+            </header>
+            <p>
+                To use a particular <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> and <a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a> picture many times, it's simpler to give them names. Move back to the definitions area (the top area) and add two definitions, so that the complete content of the definitions area looks like this:
+            </p>
+            <pre>
+                <code>
+                    <a class="code-keyword" href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29" target="_blank">#lang</a> <a class="code-keyword" href="https://docs.racket-lang.org/slideshow/index.html" target="_blank">slideshow</a>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> c (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>))
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> r (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._rectangle%29%29">rectangle</a> <span class="code-value">10</span> <span class="code-value">20</span>))
+                </code>
+            </pre>
+            <p>
+                Then click <span class="bold">Run</span> again. Now, you can just type c or r:
+            </p>
+            <pre>
+                <code>
+                    > r
+                    <img src="https://docs.racket-lang.org/quick/pict_4.png" alt="rectangle">
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> c r)
+                    <img src="https://docs.racket-lang.org/quick/pict_5.png" alt="circle and rectangle appended">
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> <span class="code-value">20</span> c r c)
+                    <img src="https://docs.racket-lang.org/quick/pict_6.png" alt="circle, rectangle and circle appended but spaced apart">
+                </code>
+            </pre>
+            <p>
+                As you can see, the <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> function accepts an optional number argument before the picture arguments, and it accepts any number of picture arguments. When a number is provided, it specifies the amount of space to add between pictures.
+            </p>
+            <p>
+                We could have evaluated the <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> forms for c and r in the interactions area instead of the definitions area. In practice, though, the definitions area is where your program lives—it's the file that you save—while the interaction area is for transient explorations and debugging tasks.
+            </p>
+            <p>
+                Let's add a function definition to the program. A function definition uses <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a>, just like our shape definitions, but with an open parenthesis before the function name, and names for the function arguments before the matching close parenthesis:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (square n)<span class="code-comment">
+                      ; A semi-colon starts a line comment.
+                      ; The expression below is the function body.</span>
+                      (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._filled-rectangle%29%29" target="_blank">filled-rectangle</a> n n))
+                </code>
+            </pre>
+            <p>
+                The syntax of the definition mirrors the syntax of a function call:
+            </p>
+            <pre>
+                <code>
+                    > (square <span class="code-value">10</span>)
+                    <img src="https://docs.racket-lang.org/quick/pict_7.png" alt="filled square">
+                </code>
+            </pre>
+            <p>
+                In the same way that definitions can be evaluated in the interactions area, expressions can be included in the definitions area. When a program is run, expression results from the definition area are shown in the interaction area. From now on, we'll write our example definitions and expressions together, and you can put them in whichever area you prefer. The examples will build on each other, however, so it's best to put at least the definitions in the definition area.
+            </p>
+        </section>
+        <section class="main-section" id="Local_Bindings">
+            <header>
+                Local Bindings
+            </header>
+            <p>
+                The <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> form can be used in some places to create local bindings. For example, it can be used inside a function body:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (four p)
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> two-p (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> p p))
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a> two-p two-p))
+                    
+                    > (four (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>))
+                    <img src="https://docs.racket-lang.org/quick/pict_8.png" alt="four appended circles stacked in rows of two.">
+                </code>
+            </pre>
+            <p>
+                More typically, Racketeers use the <a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let</a> or <a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let*</a> form for local binding. An advantage of <a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let</a> is that it can be used in any expression position. Also, it binds many identifiers at once, instead of requiring a separate <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> for each identifier:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (checker p1 p2)
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let</a> ([p12 (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> p1 p2)]
+                            [p21 (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> p2 p1)])
+                        (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a> p12 p21)))
+
+                    > (checker (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (square <span class="code-value">10</span>)<span class="code-value"> "red"</span>)
+                            (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (square <span class="code-value">10</span>)<span class="code-value"> "black"</span>))
+                    <img src="https://docs.racket-lang.org/quick/pict_9.png" alt="checkered square">
+                </code>
+            </pre>
+            <p>
+                A <a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let</a> form binds many identifiers at the same time, so the bindings cannot refer to each other. The <a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let*</a> form, in contrast, allows later bindings to use earlier bindings:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (checkerboard p)
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let*</a> ([rp (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> p<span class="code-value"> "red"</span>)]
+                            [bp (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> p<span class="code-value"> "black"</span>)]
+                            [c (checker rp bp)]
+                            [c4 (four c)])
+                        (four c4)))
+                    
+
+                    > (checkerboard (square <span class="code-value">10</span>))
+                    <img src="https://docs.racket-lang.org/quick/pict_10.png" alt="large checker board">
+                </code>
+            </pre>
+        </section>
+        <section class="main-section" id="Functions_are_Values">
+            <header>
+                Functions are Values
+            </header>
+            <p>
+                Instead of calling <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> as a function, try evaluating just <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> as an expression:
+            </p>
+            <pre>
+                <code>
+                    > <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>
+                    <span class="code-output">#&lt;procedure:circle&gt;</span>
+                </code>
+            </pre>
+            <p>
+                That is, the identifier <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> is bound to a function (a.k.a. “procedure”), just like c is bound to a <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>. Unlike a <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> picture, there's not a simple way of completely printing the function, so DrRacket just prints <span class="code-output">#&lt;procedure:circle&gt;</span>.
+            </p>
+            <p>
+                This example shows that functions are values, just like numbers and pictures (even if they don't print as nicely). Since functions are values, you can <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> functions that accept other functions as arguments:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (series mk)
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> <span class="code-value">4</span> (mk <span class="code-value">5</span>) (mk <span class="code-value">10</span>) (mk <span class="code-value">20</span>)))
+
+                    > (series <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>)
+                    <img src="https://docs.racket-lang.org/quick/pict_11.png" alt="series of increasing circles">
+                    > (series square)
+                    <img src="https://docs.racket-lang.org/quick/pict_12.png" alt="series of increasing squares">
+                </code>
+            </pre>
+            <p>
+                When calling a function that accepts a function argument, the argument function often isn't needed anywhere else. Having to write down the function via <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> would be a hassle, because you have to make up a name and find a place to put the function definition. The alternative is to use <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a>, which creates an anonymous function:
+            </p>
+            <pre>
+                <code>
+                    > (series (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (size) (checkerboard (square size))))
+                    <img src="https://docs.racket-lang.org/quick/pict_13.png" alt="series of increasing checkerboards">
+                </code>
+            </pre>
+            <p>
+                The parenthesized names after a <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> are the arguments to the function, and the expression after the argument names is the function body. Using the word “<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a>” instead of “function” or “procedure” is part of Racket's history and culture.
+            </p>
+            <p>
+                A <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> form for a function is really a shorthand for a simple <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> using <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> as the value. For example, the series definition could be written as
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> series
+                      (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (mk)
+                        (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> <span class="code-value">4</span> (mk <span class="code-value">5</span>) (mk <span class="code-value">10</span>) (mk <span class="code-value">20</span>))))
+                </code>
+            </pre>
+            <p>
+                Most Racketeers prefer to use the shorthand function form with <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> instead of expanding to <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a>
+            </p>
+        </section>
+        <section class="main-section" id="Lexical_Scope">
+            <header>
+                Lexical Scope
+            </header>
+            <p>
+                Racket is a lexically scoped language, which means that whenever an identifier is used as an expression, something in the textual environment of the expression determines the identifier's binding. This rule applies to identifiers in a <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> body as well as anywhere else.
+            </p>
+            <p>
+                In the following rgb-series function, the uses of mk in each <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> form refer to the argument of rgb-series, since that's the binding that is textually in scope:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (rgb-series mk)
+                      (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a>
+                        (series (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (sz) (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (mk sz)<span class="code-value"> "red"</span>)))
+                        (series (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (sz) (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (mk sz)<span class="code-value"> "green"</span>)))
+                        (series (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (sz) (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (mk sz)<span class="code-value"> "blue"</span>)))))
+
+                    > (rgb-series <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>)
+                    <img src="https://docs.racket-lang.org/quick/pict_14.png" alt="series of rgb circles">
+                    > (rgb-series square)
+                    <img src="https://docs.racket-lang.org/quick/pict_15.png" alt="series of rgb squares">
+                </code>
+            </pre>
+            <p>
+                Here's another example, where rgb-maker takes a function and returns a new one that remembers and uses the original function.
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (rgb-maker mk)
+                      (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (sz)
+                        (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a> (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (mk sz)<span class="code-value"> "red"</span>)
+                                   (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (mk sz)<span class="code-value"> "green"</span>)
+                                   (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (mk sz)<span class="code-value"> "blue"</span>))))
+
+                    > (series (rgb-maker <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>))
+                    <img src="https://docs.racket-lang.org/quick/pict_16.png" alt="series of appended rgb circles">
+                    > (series (rgb-maker square))
+                    <img src="https://docs.racket-lang.org/quick/pict_17.png" alt="series of appended rgb sqaures">
+                </code>
+            </pre>
+            <p>
+                Note how composing functions via rgb-maker creates a different alignment of objects within the picture compared to using rgb-series.
+            </p>
+        </section>
+        <section class="main-section" id="Lists">
+            <header>
+                Lists
+            </header>
+            <p>
+                Racket inherits much of its style from the language Lisp, whose name originally stood for “LISt Processor,” and lists remain an important part of Racket.
+            </p>
+            <p>
+                The <a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29" target="_blank">list</a> function takes any number of arguments and returns a list containing the given values:
+            </p>
+            <pre>
+                <code>
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29" target="_blank">list</a><span class="code-value"> "red"</span><span class="code-value"> "green"</span><span class="code-value"> "blue"</span>)
+                    <span class="code-output">'("red" "green" "blue")</span>
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29" target="_blank">list</a> (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>) (square <span class="code-value">10</span>))
+                    <span class="code-output">'(<img src="https://docs.racket-lang.org/quick/pict_18.png" alt="circle"> <img src="https://docs.racket-lang.org/quick/pict_19.png" alt="square">)</span>
+                </code>
+            </pre>
+            <p>
+                As you can see, a list prints as a single quote and then pair of parentheses wrapped around the printed form of the list elements. There's room for confusion here, because parentheses are used for both expressions, such as (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>), and printed results, such as <span class="code-output">'("red" "green" "blue")</span>. The quote is the key difference, as discussed elsewhere. To help emphasize the difference, in the documentation and in DrRacket, result parentheses are printed in blue, unlike expression parentheses.
+            </p>
+            <p>
+                If you have a list, then you'll eventually want to do something with each of the elements. The <a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29" target="_blank">map</a> function takes a list and a function to apply to each element of the list; it returns a new list to combine the function's results:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (rainbow p)
+                      (<a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29" target="_blank">map</a> (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (color)
+                             (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> p color))
+                           (list<span class="code-value"> "red"</span><span class="code-value"> "orange"</span><span class="code-value"> "yellow"</span><span class="code-value"> "green"</span><span class="code-value"> "blue"</span><span class="code-value"> "purple"</span>)))
+
+                    > (rainbow (square <span class="code-value">5</span>))
+                    <span class="code-output">'(<img src="https://docs.racket-lang.org/quick/pict_20.png" alt=" list of rainbow square"> <img src="https://docs.racket-lang.org/quick/pict_21.png" alt=" list of rainbow square"> <img src="https://docs.racket-lang.org/quick/pict_22.png" alt=" list of rainbow square"> <img src="https://docs.racket-lang.org/quick/pict_23.png" alt=" list of rainbow square"> <img src="https://docs.racket-lang.org/quick/pict_24.png" alt=" list of rainbow square"> <img src="https://docs.racket-lang.org/quick/pict_25.png" alt=" list of rainbow square">)</span>
+                </code>
+            </pre>
+            <p>
+                Another function that works with lists is <a class="code-keyword" href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29" target="_blank">apply</a>. Like <a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29" target="_blank">map</a>, it takes a function and a list, but a function given to <a class="code-keyword" href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29" target="_blank">apply</a> should take all of the arguments at once, instead of each one individually. The <a class="code-keyword" href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29" target="_blank">apply</a> function is especially useful with functions that take any number of arguments, such as <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a>:
+            </p>
+            <pre>
+                <code>
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29" target="_blank">apply</a> <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a> (rainbow (square <span class="code-value">5</span>)))
+                    <img src="https://docs.racket-lang.org/quick/pict_26.png" alt="appended raibow squares">
+                </code>
+            </pre>
+            <p>
+                Note that (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a> (rainbow (square <span class="code-value">5</span>))) would not work, because <a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._vc-append%29%29" target="_blank">vc-append</a> does not want a list as an argument; it wants a picture as an argument, and it is willing to accept any number of them. The <a class="code-keyword" href="https://docs.racket-lang.org/reference/procedures.html#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._apply%29%29" target="_blank">apply</a> function bridges the gap between a function that wants many arguments and a list of those arguments as a single value.
+            </p>
+        </section>
+        <section class="main-section" id="Modules">
+            <header>
+                Modules
+            </header>
+            <p>
+                Since your program in the definitions window starts with
+            </p>
+            <pre>
+                <code>
+                    <a class="code-keyword" href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29" target="_blank">#lang</a> <a class="code-keyword" href="https://docs.racket-lang.org/slideshow/index.html" target="_blank">slideshow</a>
+                </code>
+            </pre>
+            <p>
+                all of the code that you put in the definitions window is inside a module. Furthermore, the module initially imports everything from the module designated by <a class="code-keyword" href="https://docs.racket-lang.org/slideshow/index.html" target="_blank">slideshow</a>, which exports picture-making functions as well as more commonly used functions such as <a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28quote._~23~25kernel%29._list%29%29" target="_blank">list</a> and <a class="code-keyword" href="https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Fmap..rkt%29._map%29%29" target="_blank">map</a>.
+            </p>
+            <p>
+                To import additional libraries, use the <a class="code-keyword" href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29" target="_blank">require</a> form. For example, the library <a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29" target="_blank">pict/flash</a> provides a <a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28def._%28%28lib._pict%2Fflash..rkt%29._filled-flash%29%29" target="_blank">filled-flash</a> function:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29" target="_blank">require</a> <a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29" target="_blank">pict/flash</a>)
+
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28def._%28%28lib._pict%2Fflash..rkt%29._filled-flash%29%29" target="_blank">filled-flash</a> <span class="code-value">40</span> <span class="code-value">30</span>)
+                    <img src="https://docs.racket-lang.org/quick/pict_27.png" alt="flash">
+                </code>
+            </pre>
+            <p>
+                Modules are named and distributed in various ways:
+            </p>
+            <ul>
+                <li>
+                    <p>
+                        Some modules are packaged in the Racket distribution or otherwise installed into a hierarchy of collections. For example, the module name <a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28mod-path._pict%2Fflash%29" target="_blank">pict/flash</a> means “the module implemented in the file "flash.rkt" that is located in the "pict" collection.” When a module name includes no slash, then it refers to a "main.rkt" file.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Some collections of modules are distributed as packages. Packages can be installed using the Install Package... menu item in DrRacket's File menu, or they can be installed using the raco pkg command-line tool. For example, installing the "avl" package makes the <a href="https://docs.racket-lang.org/avl/index.html" class="code-keyword" target="_blank">avl</a> module available.
+                    </p>
+                    <p>
+                        Packages can be registered at <a class="code-keyword" href="https://pkgs.racket-lang.org/" target="_blank">https://pkgs.racket-lang.org/</a>, or they can be installed directly from a Git repository, web site, file, or directory. See <a href="https://docs.racket-lang.org/pkg/index.html" class="code-keyword" target="_blank">Package Management in Racket</a> for more information about packages.
+                    </p>
+                </li>
+                <li>
+                    <span class="important">To save your definitions, use DrRacket's <a href="https://docs.racket-lang.org/drracket/Menus.html#%28part._menu~3afile%29" target="_blank" class="code-keyword">Save Definitions</a> menu item.</span>
+                    <p>
+                        Some modules live relative to other modules, without necessarily belonging to any particular collection or package. For example, in DrRacket, if you save your definitions so far in a file "quick.rkt" and add the line
+                    </p>
+                    <pre>
+                        <code>
+                            (provide rainbow square)
+                        </code>
+                    </pre>
+                    <p>
+                        then you can open a new tab or window in DrRacket, type the new program "use.rkt" in the same directory as "quick.rkt":
+                    </p>
+                    <pre>
+                        <code>
+                            <a class="code-keyword" href="https://docs.racket-lang.org/guide/Module_Syntax.html#%28part._hash-lang%29" target="_blank">#lang</a> <a href="https://docs.racket-lang.org/reference/index.html" target="_blank" class="code-keyword">racket</a>
+                            (<a class="code-keyword" href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29" target="_blank">require</a> <span class="code-value">"quick.rkt"</span>)
+                            (rainbow (square <span class="code-value">5</span>))
+                        </code>
+                    </pre>
+                    <p>
+                        and when you run "use.rkt", a rainbow list of squares is the output. Note that "use.rkt" is written using the initial import <a href="https://docs.racket-lang.org/reference/index.html" target="_blank" class="code-keyword">racket</a>, which does not supply any picture-making functions itself—but does provide <a class="code-keyword" href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29" target="_blank">require</a> and the function-calling syntax.
+                    </p>
+                </li>
+            </ul>
+            <p>
+                Racketeers typically write new programs and libraries as modules that import each other through relative paths and collection-based paths. When a program or library developed this way seems useful to others, it can be registered as a package, especially if the implementation is hosted in a Git repository.
+            </p>
+        </section>
+        <section class="main-section" id="Macros">
+            <header>
+                Macros
+            </header>
+            <p>
+                Here's another library to try:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29" target="_blank">require</a> <a class="code-keyword" href="https://docs.racket-lang.org/slideshow/index.html" target="_blank">slideshow</a>/code)
+
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29" target="_blank">code</a> (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>))
+                    <img src="https://docs.racket-lang.org/quick/img0.png" alt="image of code instead of circle">
+                </code>
+            </pre>
+            <p>
+                Instead of a <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>, the result is a picture of the code that, if it were used as an expression, would produce a <span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span>. In other words, <a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29" target="_blank">code</a> is not a function, but instead a new syntactic form for creating pictures; the bit between the opening parenthesis with <a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29" target="_blank">code</a> is not an expression, but instead manipulated by the <a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29" target="_blank">code</a> syntactic form.
+            </p>
+            <p>
+                This helps explain what we meant in the previous section when we said that racket provides <a class="code-keyword" href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29" target="_blank">require</a> and the function-calling syntax. Libraries are not restricted to exporting values, such as functions; they can also <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> new syntactic forms. In this sense, Racket isn't exactly a language at all; it's more of an idea for how to structure a language so that you can extend it or create entirely new languages.
+            </p>
+            <p>
+                One way to introduce a new syntactic form is through <a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define-syntax%29%29" target="_blank">define-syntax</a> with <a class="code-keyword" href="https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29" target="_blank">syntax-rules</a>:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define-syntax%29%29" target="_blank">define-syntax</a> pict+code
+                      (<a class="code-keyword" href="https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29" target="_blank">syntax-rules</a> ()
+                        [(pict+code expr)
+                          (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> 10
+                                     expr
+                                     (<a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29" target="_blank">code</a> expr))]))
+
+                    > (pict+code (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>))
+                    <img src="https://docs.racket-lang.org/quick/img1.png" alt="resulting code and the code itself">
+                </code>
+            </pre>
+            <p>
+                This kind of definition is a macro. The (pict+code expr) part is a pattern for uses of the macro; instances of the pattern in a program are replaced by instances of the corresponding template, which is (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> <span class="code-value">10</span> expr (<a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29" target="_blank">code</a> expr)). In particular, (pict+code (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>)) matches the pattern with (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>) as expr, so it is replaced with (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Combiners.html#%28def._%28%28lib._pict%2Fmain..rkt%29._hc-append%29%29" target="_blank">hc-append</a> <span class="code-value">10</span> (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>) (<a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28form._%28%28lib._pict%2Fcode..rkt%29._code%29%29" target="_blank">code</a> (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>))).
+            </p>
+            <p>
+                Of course, this sort of syntactic extension cuts both ways: inventing a new language can make it easier to say what you want, but harder for others to understand. As it happens, the developers of Racket are constantly giving talks and writing papers that involve Racket code, and it's worthwhile for everyone who works on those products to know about code.
+            </p>
+            <p>
+                In fact, you might want to take a look at the source of this document. You'll see that it starts with #lang, but otherwise doesn't look a lot like Racket; nevertheless, we build this document by running its source as a Racket program. We have to use a lot more than <a class="code-keyword" href="https://docs.racket-lang.org/reference/stx-patterns.html#%28form._%28%28lib._racket%2Fprivate%2Fstxcase-scheme..rkt%29._syntax-rules%29%29" target="_blank">syntax-rules</a> to extend Racket's syntax enough for writing documents, but Racket's syntactic extension can take you a long way.
+            </p>
+        </section>
+        <section class="main-section" id="Objects">
+            <header>
+                Objects
+            </header>
+            <p>
+                An object system is another example of a sophisticated language extension that is worth learning and using for Racket users. Objects are sometimes better than functions, even when you have <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a>, and objects work especially well for graphical user interfaces. The API for Racket's GUI and graphics system is expressed in terms of objects and classes.
+            </p>
+            <p>
+                The class system itself is implemented by the <a href="https://docs.racket-lang.org/reference/mzlib_class.html" target="_blank" class="code-keyword">racket/class</a> library, and the <a href="https://docs.racket-lang.org/gui/index.html" target="_blank" class="code-keyword">racket/gui/base</a> library provides the GUI and drawing classes. By convention, the classes are given names that end with %:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/require.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._require%29%29" target="_blank">require</a> racket/class
+                             racket/gui/base)
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> f (<a class="code-keyword" href="https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29" target="_blank">new</a> <a class="code-keyword" href="https://docs.racket-lang.org/gui/frame_.html" target="_blank">frame%</a> [label <span class="code-value">"My Art"</span>]
+                                          [width <span class="code-value">300</span>]
+                                          [height <span class="code-value">300</span>]
+                                          [alignment <span class="code-value">'(center center)</span>]))
+
+                    > (<a class="code-keyword" href="https://docs.racket-lang.org/reference/ivaraccess.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._send%29%29" target="_blank">send</a> f show <span class="code-value">#t</span>)
+                </code>
+            </pre>
+            <p>
+                The <a class="code-keyword" href="https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29" target="_blank">new</a> form creates an instance of a class, where initialization arguments like label and width are provided by name. The <a class="code-keyword" href="https://docs.racket-lang.org/reference/ivaraccess.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._send%29%29" target="_blank">send</a> form calls a method of the object, such as show, with arguments after the method name; the argument <span class="code-value">#t</span> in this case is the boolean constant “true.”
+            </p>
+            <p>
+                Pictures generated with <a class="code-keyword" href="https://docs.racket-lang.org/slideshow/index.html" target="_blank">slideshow</a> encapsulate a function that uses the graphics toolbox's drawing commands to render the picture to a drawing context, such as a canvas in a frame. The <a class="code-keyword" href="https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29" target="_blank">make-pict-drawer</a> function from <a class="code-keyword" href="https://docs.racket-lang.org/slideshow/index.html" target="_blank">slideshow</a> exposes a picture's drawing function. We can use <a class="code-keyword" href="https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29" target="_blank">make-pict-drawer</a> in a canvas-painting callback to draw a picture into a canvas:
+            </p>
+            <pre>
+                <code>
+                    (<a class="code-keyword" href="https://docs.racket-lang.org/reference/define.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._define%29%29" target="_blank">define</a> (add-drawing p)
+                      (<a class="code-keyword" href="https://docs.racket-lang.org/reference/let.html#%28form._%28%28lib._racket%2Fprivate%2Fletstx-scheme..rkt%29._let%29%29" target="_blank">let</a> ([drawer (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Rendering.html#%28def._%28%28lib._pict%2Fmain..rkt%29._make-pict-drawer%29%29" target="_blank">make-pict-drawer</a> p)])
+                        (<a class="code-keyword" href="https://docs.racket-lang.org/reference/objcreation.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._new%29%29" target="_blank">new</a> <a class="code-keyword" href="https://docs.racket-lang.org/gui/canvas_.html" target="_blank">canvas%</a> [parent f]
+                                     [style <span class="code-value">'(border)</span>]
+                                     [paint-callback (<a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> (self <a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._dc%29%29" target="_blank">dc</a>)
+                                                     (drawer <a class="code-keyword" href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._dc%29%29" target="_blank">dc</a> <span class="code-value">0</span> <span class="code-value">0</span>))])))
+
+                    > (add-drawing (pict+code (<span class="code-keyword"><a href="https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html#%28def._%28%28lib._pict%2Fmain..rkt%29._circle%29%29" target="_blank">circle</a></span> <span class="code-value">10</span>)))
+                    <span class="code-output">#(struct:object:canvas% ...)</span>
+                    > (add-drawing (<a class="code-keyword" href="https://docs.racket-lang.org/pict/Pict_Drawing_Adjusters.html#%28def._%28%28lib._pict%2Fmain..rkt%29._colorize%29%29" target="_blank">colorize</a> (<a class="code-keyword" href="https://docs.racket-lang.org/pict/More_Pict_Constructors.html#%28def._%28%28lib._pict%2Fflash..rkt%29._filled-flash%29%29" target="_blank">filled-flash</a> <span class="code-value">50</span> <span class="code-value">30</span>)<span class="code-value"> "yellow"</span>))
+                    <span class="code-output">#(struct:object:canvas% ...)</span>
+                    <img src="https://docs.racket-lang.org/quick/img2.png" alt="object frame">
+                </code>
+            </pre>
+            <p>
+                Each canvas stretches to fill an equal portion of the frame, because that's how a frame manages its children by default.
+            </p>
+        </section>
+        <section class="main-section" id="Where_Now">
+            <header>
+                Where Now
+            </header>
+            <p>
+                This introduction to Racket purposely avoids many of the traditional ways of introducing and distinguishing Lisp or Scheme: prefix arithmetic notation, symbols, quoting and quasiquoting lists, <a href="https://docs.racket-lang.org/reference/eval.html#%28def._%28%28quote._~23~25kernel%29._eval%29%29" target="_blank" class="code-keyword">eval</a>, first-class continuations, and the idea that all syntax is really just a <a class="code-keyword" href="https://docs.racket-lang.org/reference/lambda.html#%28form._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._lambda%29%29" target="_blank">lambda</a> in disguise. While those are all part of Racket, they are not the main ingredients of day-to-day programming in Racket.
+            </p>
+            <p>
+                Instead, Racket programmers typically program with functions, records, objects, exceptions, regular expressions, modules, and threads. That is, instead of a “minimalist” language—which is the way that Scheme is often described—Racket offers a rich language with an extensive set of libraries and tools.
+            </p>
+            <p>
+                If you are new to programming or if you have the patience to work through a textbook, we recommend reading <a href="http://www.htdp.org/" target="_blank" class="code-keyword">How to Design Programs</a>. If you have already read it, or if you want to see where the book will take you, then see <a href="https://docs.racket-lang.org/continue/index.html" target="_blank" class="code-keyword">theContinue: Web Applications in Racketdocumentation</a>.
+            </p>
+            <p>
+                For experienced programmers, to continue touring Racket from a systems-oriented perspective instead of pictures, your next stop is <a href="https://docs.racket-lang.org/more/index.html" target="_blank" class="code-keyword">More: Systems Programming with Racket</a>.
+            </p>
+            <p>
+                To instead start learning about the full Racket language and tools in depth, move on to <a href="https://docs.racket-lang.org/guide/index.html" target="_blank" class="code-keyword">The Racket Guide</a>.
+            </p>
+        </section>
+        <footer>
+            <p>Content created by Matthew Flatt</p>
+            <p>Reformatted for educational purposes</p>
+        </footer>
+    </main>
+</body>
+</html>
